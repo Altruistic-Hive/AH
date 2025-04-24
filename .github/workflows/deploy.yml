@@ -1,0 +1,61 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Docusaurus site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ] # main 브랜치에 push될 때 실행
+  # 워크플로우를 수동으로 실행할 수 있게 함 (선택 사항)
+  workflow_dispatch:
+
+# 워크플로우에 필요한 권한 설정
+permissions:
+  contents: read      # 저장소 콘텐츠를 체크아웃하기 위해 필요
+  pages: write        # GitHub Pages에 배포하기 위해 필요
+  id-token: write     # GitHub Actions의 OIDC 토큰을 사용하기 위해 필요 (deploy-pages 액션 요구)
+
+# 동시 배포 방지 설정
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # 빌드 작업
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # 로컬과 맞추세요
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
+        run: npm run build
+      - name: Upload artifact # 빌드 결과물을 아티팩트로 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 기본적으로 'build' 폴더를 업로드합니다.
+          path: ./build
+
+  # 배포 작업
+  deploy:
+    # build 작업이 성공해야 실행됨
+    needs: build
+
+    # GitHub Pages 배포 환경 설정
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # 배포 후 URL을 출력하기 위함
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages # 아티팩트를 사용하여 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
+        # 이전 단계에서 업로드한 아티팩트를 자동으로 다운로드하여 배포함
