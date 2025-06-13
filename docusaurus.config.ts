@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'AH',
+  tagline: 'Altruistic Hive',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -17,8 +17,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Altruistic-Hive', // Usually your GitHub org/user name.
+  projectName: 'AH', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -66,9 +66,15 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Altruistic Hive',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -89,49 +95,35 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'dark', // 푸터는 항상 다크 스타일 유지
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
+          title: 'Learn More',
+          items: [ { label: 'Projects', to: '/docs/intro' }, { label: 'Blog', to: '/blog' } ],
         },
         {
-          title: 'Community',
+          title: 'Contact',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+            { label: 'Email', href: 'mailto:your-email@example.com' },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-profile' },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+            { label: 'GitHub', href: 'https://github.com/your-github-username' },
+            { label: 'Resume', href: '/resume.pdf' },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      logo: {
+        alt: 'My Logo',
+        src: 'img/logo-white.svg', // 푸터용 로고는 항상 흰색으로
+        href: '/',
+        width: 50,
+        height: 50,
+      },
+      copyright: `Copyright © ${new Date().getFullYear()} My Portfolio. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

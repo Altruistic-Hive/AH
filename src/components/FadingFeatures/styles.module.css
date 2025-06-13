@@ -1,0 +1,261 @@
+.featureSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  background-color: var(--custom-section-background);
+  overflow: hidden;
+  height: 100vh; /* 화면 전체 높이로 고정 */
+  scroll-snap-align: start; /* 스냅 지점으로 설정 */
+  transition: background-color 0.4s ease;
+}
+/* sizer는 더 이상 필요 없으므로 관련된 모든 스타일 제거 */
+.sizer {
+  display: none;
+}
+
+.sizer .featureContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sizer .imageWrapper img {
+    display: none;
+}
+
+.contentWrapper {
+  width: 100%;
+}
+
+.containerLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 24px;
+  transition: background-color 0.3s ease;
+}
+
+.contentWrapper:hover .containerLink {
+  background-color: var(--ifm-background-surface-color);
+}
+
+.featureContainer {
+  display: grid;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: transparent;
+  border: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.featureContainer.fading {
+  opacity: 0;
+}
+
+/* --- Layouts --- */
+.imageRight {
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+}
+
+.imageLeft {
+  grid-template-columns: 1.3fr 1fr;
+  gap: 5rem;
+}
+.imageLeft .imageColumn {
+  order: -1;
+}
+
+.imageOverlay {
+  grid-template-columns: 1fr;
+  padding: 0;
+  position: relative;
+  height: 500px;
+  gap: 0;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* --- Columns & Content --- */
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imageColumn {
+  perspective: 1500px;
+}
+
+.imageWrapper {
+  border-radius: 16px;
+  overflow: visible; 
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.featureImage {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.contentWrapper:hover .featureImage {
+  transform: scale(1.02); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+html[data-theme='dark'] .contentWrapper:hover .featureImage {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  display: inline-flex;
+  background-color: var(--custom-tag-background);
+  color: var(--custom-tag-text);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--ifm-font-color-base);
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+}
+
+/* --- Refined Hover Effects --- */
+.imageGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: 0 0 0px 0px var(--custom-glow-color);
+  opacity: 0;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  pointer-events: none;
+}
+
+.contentWrapper:hover .imageGlow {
+  opacity: 0.5;
+  box-shadow: 0 0 60px 8px var(--custom-glow-color);
+}
+
+.arrowLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contentWrapper:hover .arrowLink {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Overlay Layout Specifics --- */
+.imageOverlay {
+  position: relative;
+}
+.imageOverlay .imageWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.imageOverlay .featureImage {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+.imageOverlay .textColumn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  color: white;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.contentWrapper:hover .imageOverlay .textColumn {
+  opacity: 1;
+  transform: translateY(0);
+}
+.imageOverlay .tagContainer, 
+.imageOverlay .textColumn {
+  align-items: flex-start;
+  text-align: left;
+}
+.imageOverlay .tag {
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+.imageOverlay .title,
+.imageOverlay .description {
+  color: #fff;
+}
+.imageOverlay .description {
+  color: #e0e0e0;
+}
+.contentWrapper:hover .imageOverlay .arrowLink {
+  color: #fff;
+}
+.imageOverlay .imageGlow {
+  border-radius: 24px;
+}
+.contentWrapper:hover .imageOverlay {
+  background-color: transparent;
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 996px) {
+  .featureSection {
+    padding: 4rem 1rem;
+    min-height: auto !important; /* 모바일에서는 높이 고정 해제 */
+  }
+  .sizer {
+      display: none;
+  }
+  .featureContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .imageLeft .imageColumn {
+    order: 0;
+  }
+  .textColumn {
+    text-align: center;
+  }
+  .tagContainer {
+    justify-content: center;
+  }
+}

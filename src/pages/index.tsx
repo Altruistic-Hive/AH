@@ -1,43 +1,29 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
+import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import HomepageHeader from '@site/src/components/HomepageHeader'; // 헤더를 별도 컴포넌트로 분리
+import FloatingShowcase from '@site/src/components/FloatingShowcase';
+import FadingFeatures from '@site/src/components/FadingFeatures';
+import useLayoutClassName from '@site/src/hooks/useLayoutClassName'; // 훅 임포트
 
+export default function Home(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  
+  // 이 페이지가 렌더링될 때 <html>에 'scroll-snap-page' 클래스를 추가합니다.
+  useLayoutClassName('scroll-snap-page');
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
 
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Home`}
+      description="We are Altruistic Hive.">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <FadingFeatures /> 
+        <floating />
       </main>
     </Layout>
   );

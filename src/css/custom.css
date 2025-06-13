@@ -1,30 +1,114 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* You can override the default Infima variables here. */
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth; /* 스냅될 때 부드럽게 이동 */
+}
+/* --- 라이트 모드 (기본) --- */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-primary: #0d1a49;
+  --ifm-color-primary-dark: #0c1741;
+  --ifm-color-primary-darker: #0b153c;
+  --ifm-color-primary-darkest: #091132;
+  --ifm-color-primary-light: #0e1d51;
+  --ifm-color-primary-lighter: #0f1f56;
+  --ifm-color-primary-lightest: #112461;
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f7f7f7;
+  --ifm-font-color-base: #1c1e21;
+  --ifm-font-color-secondary: #555;
+  --ifm-global-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.07);
+  --ifm-global-shadow-md: 0 20px 40px -15px rgba(0, 31, 63, 0.1);
+  
+  --ifm-font-family-base: 'Inter', sans-serif;
+  --ifm-button-border-radius: 8px;
+  
+  /* 커스텀 변수 */
+  --custom-glow-color: #7d8eff;
+  --custom-tag-background: #f0f0f0;
+  --custom-tag-text: #555;
+  --custom-hero-background: #ffffff;
+  --custom-section-background: #ffffff;
+  --custom-hero-text-color: #1c1e21;
+  --custom-hero-subtitle-color: #555;
+  --custom-hero-overlay-color: rgba(255, 255, 255, 0.5);
+  --custom-hero-text-stroke-color: rgba(255, 255, 255, 0.7);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* --- 진정한 다크 모드 --- */
+html[data-theme='dark'] {
+  --ifm-color-primary: #8a9fff;
+  --ifm-color-primary-dark: #697fff;
+  --ifm-color-primary-darker: #5b72ff;
+  --ifm-color-primary-darkest: #3b53ff;
+  --ifm-color-primary-light: #aab9ff;
+  --ifm-color-primary-lighter: #b8c4ff;
+  --ifm-color-primary-lightest: #d6dcff;
+
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #161b22;
+  --ifm-font-color-base: #e3e3e3;
+  --ifm-font-color-secondary: #9a9a9a;
+  --ifm-global-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --ifm-global-shadow-md: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+
+  /* 커스텀 변수 */
+  --custom-glow-color: #8a9fff;
+  --custom-tag-background: rgba(138, 159, 255, 0.1);
+  --custom-tag-text: #b8c4ff;
+  --custom-hero-background: #0d1117;
+  --custom-section-background: #0d1117;
+  --custom-hero-text-color: #ffffff;
+  --custom-hero-subtitle-color: #e0e0e0;
+  --custom-hero-overlay-color: rgba(0, 0, 0, 0.6);
+  --custom-hero-text-stroke-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 부드러운 테마 전환 효과 */
+html, body, .main-wrapper, .navbar, footer.footer, section, div, p, h1, h2, h3, h4 {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+img {
+  transition: filter 0.4s ease;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar--fixed-top {
+  position: fixed; /* 항상 화면에 고정 */
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease;
+}
+
+html[data-navbar-spy-is-at-top='false'] .navbar--fixed-top {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+}
+html[data-theme='dark'][data-navbar-spy-is-at-top='false'] .navbar--fixed-top {
+  background-color: rgba(13, 17, 23, 0.8) !important;
+}
+
+main {
+  padding-top: 0 !important; /* Docusaurus 기본 패딩 제거 */
+}
+
+footer.footer {
+  background-color: #000000;
+  color: #888;
+  scroll-snap-align: start;
+}
+footer.footer .footer__title {
+  color: #ffffff;
+}
+footer.footer .footer__link-item {
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+footer.footer .footer__link-item:hover {
+  color: var(--ifm-color-primary);
 }

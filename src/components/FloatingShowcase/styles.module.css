@@ -1,0 +1,158 @@
+/* --- Keyframes for Dynamic Animation --- */
+@keyframes entropic-float-1 {
+  0% { transform: translate(0, 0) rotate(-1deg); }
+  50% { transform: translate(8px, -12px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(-1deg); }
+}
+
+@keyframes entropic-float-2 {
+  0% { transform: translate(0, 0) rotate(0.5deg); }
+  50% { transform: translate(-10px, 5px) rotate(-0.5deg); }
+  100% { transform: translate(0, 0) rotate(0.5deg); }
+}
+
+@keyframes entropic-float-3 {
+  0% { transform: translate(0, 0) rotate(1deg); }
+  50% { transform: translate(5px, 10px) rotate(-1deg); }
+  100% { transform: translate(0, 0) rotate(1deg); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.container {
+  background-color: var(--ifm-background-color);
+}
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem;
+  box-sizing: border-box;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+.itemLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+}
+.showcaseItem {
+  display: grid;
+  gap: 8rem; /* 간격 확대 */
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 24px;
+  transition: background-color 0.3s ease;
+}
+.itemLink:hover .showcaseItem {
+  background-color: var(--ifm-background-surface-color);
+}
+.layout--right {
+  grid-template-columns: 1fr 1.2fr; /* 이미지 비율 조정 */
+}
+.layout--left {
+  grid-template-columns: 1.2fr 1fr; /* 이미지 비율 조정 */
+}
+.layout--left .imageContainer {
+  order: -1;
+}
+.textContainer {
+  min-height: 22rem; /* 높이 소폭 증가 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  font-size: 3.5rem; /* 폰트 크기 증가 */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  min-height: 8rem; 
+  color: var(--ifm-font-color-base);
+}
+.description {
+  font-size: 1.2rem; /* 폰트 크기 증가 */
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.7;
+  min-height: 11rem;
+}
+.cursor {
+  animation: blink 1.2s step-end infinite;
+  font-weight: 300;
+  margin-left: 1px;
+  color: #ccc;
+  visibility: hidden;
+}
+.typingActive .cursor {
+  visibility: visible;
+}
+.imageContainer {
+  position: relative;
+  animation-duration: var(--duration);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: var(--delay);
+}
+.entropic-float-1 { animation-name: entropic-float-1; }
+.entropic-float-2 { animation-name: entropic-float-2; }
+.entropic-float-3 { animation-name: entropic-float-3; }
+
+.showcaseImage {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.itemLink:hover .showcaseImage {
+  transform: scale(1.03);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+}
+html[data-theme='dark'] .itemLink:hover .showcaseImage {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+.imageGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px; 
+  box-shadow: 0 0 0px 0px var(--custom-glow-color);
+  opacity: 0;
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+  pointer-events: none;
+}
+.itemLink:hover .imageGlow {
+  opacity: 0.5;
+  box-shadow: 0 0 50px 5px var(--custom-glow-color);
+}
+.arrowLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.itemLink:hover .arrowLink {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 996px) {
+  .section { padding: 4rem 1.5rem; }
+  .showcaseItem { grid-template-columns: 1fr; gap: 3rem; }
+  .layout--left .imageContainer { order: 0; }
+  .textContainer { text-align: center; min-height: auto; }
+  .title { font-size: 2.5rem; min-height: auto; }
+  .description { min-height: auto; }
+}

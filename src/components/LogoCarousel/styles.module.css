@@ -1,0 +1,52 @@
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logoCarouselContainer {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.carouselTitle {
+  color: #888;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+.logoSlider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logoTrack {
+  display: flex;
+  width: calc(200px * 18); /* 로고 개수 * 2 * 너비 */
+  animation: scroll 30s linear infinite;
+}
+
+.logoSlide {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.logoSlide img {
+  height: 40px;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.logoSlide img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
