@@ -89,10 +89,6 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          type: 'colorModeToggle',
-          position: 'right', // 오른쪽 아이템으로 변경
-        },
-        {
           href: 'https://github.com/your-github-username',
           label: 'GitHub',
           position: 'right', // 오른쪽 아이템으로 변경
