@@ -6,11 +6,11 @@
   padding: 0 2rem;
   background-color: var(--custom-section-background);
   overflow: hidden;
-  height: 100vh; /* 화면 전체 높이로 고정 */
-  scroll-snap-align: start; /* 스냅 지점으로 설정 */
+  height: 100vh;
+  scroll-snap-align: start;
   transition: background-color 0.4s ease;
 }
-/* sizer는 더 이상 필요 없으므로 관련된 모든 스타일 제거 */
+
 .sizer {
   display: none;
 }
@@ -54,7 +54,6 @@
   opacity: 0;
 }
 
-/* --- Layouts --- */
 .imageRight {
   grid-template-columns: 1fr 1.3fr;
   gap: 5rem;
@@ -78,7 +77,6 @@
   overflow: hidden;
 }
 
-/* --- Columns & Content --- */
 .textColumn {
   display: flex;
   flex-direction: column;
@@ -108,6 +106,7 @@
   transform: scale(1.02); 
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
+
 html[data-theme='dark'] .contentWrapper:hover .featureImage {
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
@@ -144,7 +143,6 @@ html[data-theme='dark'] .contentWrapper:hover .featureImage {
   line-height: 1.6;
 }
 
-/* --- Refined Hover Effects --- */
 .imageGlow {
   position: absolute;
   top: 0;
@@ -178,20 +176,22 @@ html[data-theme='dark'] .contentWrapper:hover .featureImage {
   transform: translateX(0);
 }
 
-/* --- Overlay Layout Specifics --- */
 .imageOverlay {
   position: relative;
 }
+
 .imageOverlay .imageWrapper {
   position: absolute;
   width: 100%;
   height: 100%;
 }
+
 .imageOverlay .featureImage {
   height: 100%;
   object-fit: cover;
   border-radius: 0;
 }
+
 .imageOverlay .textColumn {
   position: absolute;
   bottom: 0;
@@ -205,10 +205,12 @@ html[data-theme='dark'] .contentWrapper:hover .featureImage {
   transform: translateY(20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .contentWrapper:hover .imageOverlay .textColumn {
   opacity: 1;
   transform: translateY(0);
 }
+
 .imageOverlay .tagContainer, 
 .imageOverlay .textColumn {
   align-items: flex-start;
@@ -235,26 +237,29 @@ html[data-theme='dark'] .contentWrapper:hover .featureImage {
   background-color: transparent;
 }
 
-
-/* --- Responsive --- */
 @media (max-width: 996px) {
   .featureSection {
     padding: 4rem 1rem;
-    min-height: auto !important; /* 모바일에서는 높이 고정 해제 */
+    min-height: auto !important;
   }
+
   .sizer {
       display: none;
   }
+
   .featureContainer {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
   .imageLeft .imageColumn {
     order: 0;
   }
+
   .textColumn {
     text-align: center;
   }
+  
   .tagContainer {
     justify-content: center;
   }

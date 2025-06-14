@@ -74,56 +74,69 @@ const config: Config = {
     
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Altruistic Hive',
+      title: 'AH',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'AH Logo',
+        src: 'img/AH_W.svg', // 라이트 모드용 로고
+        srcDark: 'img/AH_B.svg', // 다크 모드용 로고
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+          position: 'left', // 왼쪽 아이템
+          label: 'Projects',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          type: 'colorModeToggle',
+          position: 'right', // 오른쪽 아이템으로 변경
+        },
+        {
+          href: 'https://github.com/your-github-username',
           label: 'GitHub',
-          position: 'right',
+          position: 'right', // 오른쪽 아이템으로 변경
         },
       ],
     },
     footer: {
-      style: 'dark', // 푸터는 항상 다크 스타일 유지
       links: [
         {
-          title: 'Learn More',
-          items: [ { label: 'Projects', to: '/docs/intro' }, { label: 'Blog', to: '/blog' } ],
-        },
-        {
-          title: 'Contact',
+          title: "Let's connect",
           items: [
-            { label: 'Email', href: 'mailto:your-email@example.com' },
-            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-profile' },
+            {
+              html: `<p class="footer__cta-description">Have a project in mind or just want to say hi? <br />Feel free to reach out.</p>`,
+            },
+            {
+              label: 'your-email@example.com',
+              href: 'mailto:your-email@example.com',
+              className: 'footer__cta-button'
+            }
           ],
         },
         {
-          title: 'More',
+          title: 'Follow Me',
           items: [
-            { label: 'GitHub', href: 'https://github.com/your-github-username' },
-            { label: 'Resume', href: '/resume.pdf' },
-          ],
+            {
+              label: 'GitHub',
+              href: 'https://github.com/your-github-username',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/your-profile',
+            } 
+            ],
         },
       ],
       logo: {
         alt: 'My Logo',
-        src: 'img/logo-white.svg', // 푸터용 로고는 항상 흰색으로
+        src: 'img/AH_W.svg', // 라이트 모드용 로고
+        srcDark: 'img/AH_B.svg', // 다크 모드용 로고
         href: '/',
         width: 50,
         height: 50,
       },
-      copyright: `Copyright © ${new Date().getFullYear()} My Portfolio. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Altruistic Hive. Built by <a href="https:https://til.jungin.kim">JIK</a> with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

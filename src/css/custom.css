@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-
 html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth; /* 스냅될 때 부드럽게 이동 */
+  scroll-behavior: smooth;
 }
-/* --- 라이트 모드 (기본) --- */
+
 :root {
   --ifm-color-primary: #0d1a49;
   --ifm-color-primary-dark: #0c1741;
@@ -25,7 +23,6 @@ html {
   --ifm-font-family-base: 'Inter', sans-serif;
   --ifm-button-border-radius: 8px;
   
-  /* 커스텀 변수 */
   --custom-glow-color: #7d8eff;
   --custom-tag-background: #f0f0f0;
   --custom-tag-text: #555;
@@ -37,7 +34,6 @@ html {
   --custom-hero-text-stroke-color: rgba(255, 255, 255, 0.7);
 }
 
-/* --- 진정한 다크 모드 --- */
 html[data-theme='dark'] {
   --ifm-color-primary: #8a9fff;
   --ifm-color-primary-dark: #697fff;
@@ -54,7 +50,6 @@ html[data-theme='dark'] {
   --ifm-global-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
   --ifm-global-shadow-md: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
 
-  /* 커스텀 변수 */
   --custom-glow-color: #8a9fff;
   --custom-tag-background: rgba(138, 159, 255, 0.1);
   --custom-tag-text: #b8c4ff;
@@ -66,10 +61,10 @@ html[data-theme='dark'] {
   --custom-hero-text-stroke-color: rgba(0, 0, 0, 0.7);
 }
 
-/* 부드러운 테마 전환 효과 */
 html, body, .main-wrapper, .navbar, footer.footer, section, div, p, h1, h2, h3, h4 {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
+
 img {
   transition: filter 0.4s ease;
 }
@@ -79,7 +74,7 @@ body {
 }
 
 .navbar--fixed-top {
-  position: fixed; /* 항상 화면에 고정 */
+  position: fixed;
   background: transparent !important;
   box-shadow: none !important;
   transition: background-color 0.3s ease;
@@ -89,26 +84,120 @@ html[data-navbar-spy-is-at-top='false'] .navbar--fixed-top {
   background-color: rgba(255, 255, 255, 0.8) !important;
   backdrop-filter: blur(10px);
 }
+
 html[data-theme='dark'][data-navbar-spy-is-at-top='false'] .navbar--fixed-top {
   background-color: rgba(13, 17, 23, 0.8) !important;
 }
 
 main {
-  padding-top: 0 !important; /* Docusaurus 기본 패딩 제거 */
+  padding-top: 0 !important;
+}
+
+div[class*='docsWrapper_'] {
+    padding-top: var(--ifm-navbar-height);
 }
 
 footer.footer {
-  background-color: #000000;
-  color: #888;
-  scroll-snap-align: start;
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-secondary);
+  padding: 6rem 2rem 4rem;
+  border-top: 1px solid var(--ifm-hr-background-color);
 }
-footer.footer .footer__title {
-  color: #ffffff;
+
+.footer .footer__links {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 3rem;
 }
-footer.footer .footer__link-item {
-  color: #ccc;
+
+.footer .footer__col:first-child {
+  flex: 2;
+  min-width: 300px;
+}
+.footer .footer__col:last-child {
+  flex: 1;
+  text-align: right;
+}
+
+.footer .footer__title {
+  color: var(--ifm-font-color-base);
+}
+
+.footer .footer__col:first-child .footer__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer .footer__col:last-child .footer__title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--ifm-font-color-secondary);
+}
+
+.footer p.footer__cta-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 450px;
+  margin-bottom: 2rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+.footer a.footer__cta-button {
+  display: inline-block;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--ifm-button-border-radius);
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+html[data-theme='dark'] .footer a.footer__cta-button {
+  color: #000;
+}
+.footer a.footer__cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px color-mix(in srgb, var(--ifm-color-primary) 40%, transparent);
+}
+
+.footer .footer__col:last-child .footer__items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.footer .footer__link-item {
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
+  padding: 0;
   transition: color 0.2s ease;
 }
-footer.footer .footer__link-item:hover {
+
+.footer .footer__link-item:hover {
   color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.footer .footer__bottom {
+  text-align: center;
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ifm-hr-background-color);
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  opacity: 0.8;
+}
+
+html.scroll-snap-page footer.footer {
+  scroll-snap-align: start;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

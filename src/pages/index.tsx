@@ -1,30 +1,134 @@
 import React from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageHeader from '@site/src/components/HomepageHeader'; // 헤더를 별도 컴포넌트로 분리
+import HomepageHeader from '@site/src/components/HomepageHeader';
+import LogoTicker from '@site/src/components/LogoTicker';
 import FloatingShowcase from '@site/src/components/FloatingShowcase';
 import FadingFeatures from '@site/src/components/FadingFeatures';
-import useLayoutClassName from '@site/src/hooks/useLayoutClassName'; // 훅 임포트
-
-export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  
-  // 이 페이지가 렌더링될 때 <html>에 'scroll-snap-page' 클래스를 추가합니다.
-  useLayoutClassName('scroll-snap-page');
+import Footer from '@theme/Footer';
 import styles from './index.module.css';
 
+const homepageHeaderData = {
+  titleLines: ['The', 'Altruistic', 'Hive', 'Where', 'Thrives.'],
+  dynamicItems: [
+    { word: 'Collaboration', keyword: 'collaboration' },
+    { word: 'Synergy', keyword: 'synergy' },
+    { word: 'Teamwork', keyword: 'teamwork' },
+    { word: 'Unity', keyword: 'unity' },
+    { word: 'Partnership', keyword: 'partnership' },
+    { word: 'Innovation', keyword: 'innovation' },
+    { word: 'Creativity', keyword: 'creativity' },
+    { word: 'Growth', keyword: 'growth' },
+    { word: 'Potential', keyword: 'potential' },
+    { word: 'Excellence', keyword: 'excellence' },
+    { word: 'Progress', keyword: 'progress' },
+    { word: 'Community', keyword: 'community' },
+    { word: 'Support', keyword: 'support' },
+    { word: 'Kindness', keyword: 'kindness' },
+    { word: 'Trust', keyword: 'trust' },
+    { word: 'Knowledge', keyword: 'knowledge' },
+    { word: 'Passion', keyword: 'passion' },
+    { word: 'Purpose', keyword: 'purpose' },
+    { word: 'Impact', keyword: 'impact' },
+    { word: 'Solutions', keyword: 'solutions' },
+    { word: 'Code', keyword: 'code' },
+  ],
+  subtitle: "A Developer & Researcher's journey through code and data.",
+  button: { text: 'View My Work', link: '/docs/intro' },
+};
+
+// 2. LogoCarousel 데이터 (제목 및 링크 수정)
+const logoTickerData = {
+    title: "Topics We've Explored",
+    logos: [
+      { imgSrc: 'https://cdn.svgporn.com/logos/javascript.svg', href: '/blog/tags/javascript', alt: 'JavaScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/java.svg', href: '/blog/tags/java', alt: 'Java' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/python.svg', href: '/blog/tags/python', alt: 'Python' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/react.svg', href: '/blog/tags/react', alt: 'React' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/spring-icon.svg', href: '/blog/tags/spring', alt: 'Spring' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/oracle.svg', href: '/blog/tags/oracle', alt: 'Oracle DB' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/mysql.svg', href: '/blog/tags/mysql', alt: 'MySQL' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/docker-icon.svg', href: '/blog/tags/docker', alt: 'Docker' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/kubernetes.svg', href: '/blog/tags/kubernetes', alt: 'Kubernetes' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/aws.svg', href: '/blog/tags/aws', alt: 'AWS' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/typescript-icon.svg', href: '/blog/tags/typescript', alt: 'TypeScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/nodejs-icon.svg', href: '/blog/tags/node-js', alt: 'Node.js' },
+    ]
+  };
+
+// 3. FloatingShowcase 데이터
+const floatingShowcaseData = [
+  {
+    title: "Generative Models for Complex Data Synthesis",
+    description: "Published at NeurIPS 2024, this paper explores novel diffusion-based architectures for generating high-fidelity tabular data, achieving state-of-the-art results.",
+    imageUrl: {
+        light: 'https://placehold.co/800x600/e9f5f5/000000?text=NeurIPS+2024+Paper',
+        dark: 'https://placehold.co/800x600/1a2a2a/ffffff?text=NeurIPS+2024+Paper',
+    },
+    link: '/docs/paper/generative-models',
+    layout: 'right',
+  },
+  {
+    title: "Real-time Anomaly Detection System",
+    description: "An open-source streaming platform that processes millions of events per second to detect anomalies using Isolation Forests and autoencoders. Built with Go and Kafka.",
+    imageUrl: {
+        light: 'https://placehold.co/800x600/f9f3e7/000000?text=Open+Source+Project',
+        dark: 'https://placehold.co/800x600/2a231a/ffffff?text=Open+Source+Project',
+    },
+    link: 'https://github.com/your-username/anomaly-detection',
+    layout: 'left',
+  },
+  {
+    title: "Interactive Clinical Trial Data Dashboard",
+    description: "A web-based dashboard for visualizing and exploring complex clinical trial data, enabling researchers to uncover insights faster. Developed with React and D3.js.",
+    imageUrl: {
+        light: 'https://placehold.co/800x600/f0f2f5/000000?text=Data+Dashboard',
+        dark: 'https://placehold.co/800x600/1a1a1a/ffffff?text=Data+Dashboard',
+    },
+    link: '/docs/project/clinical-dashboard',
+    layout: 'right',
+  }
+];
+
+// 4. FadingFeatures 데이터
+const fadingFeaturesData = [
+    {
+    title: 'Scalable Backend Engineering',
+    description: 'Designing and implementing high-performance, resilient microservices architectures using Go, gRPC, and Kubernetes. Focused on clean code and cloud-native principles.',
+    imageUrl: {
+        light: 'https://placehold.co/1200x900/f0f2f5/000000?text=Backend+Systems',
+        dark: 'https://placehold.co/1200x900/1a1a1a/ffffff?text=Backend+Systems',
+    },
+    tags: ['Go', 'Kubernetes', 'Microservices', 'gRPC'],
+    link: '/docs/skills/backend',
+    layout: 'imageRight', 
+  },
+  {
+    title: 'Deep Learning & AI Research',
+    description: "Exploring the frontiers of AI, with a focus on Large Language Models (LLMs) and Computer Vision. Proficient with PyTorch, TensorFlow, and JAX for rapid prototyping and large-scale training.",
+    imageUrl: {
+        light: 'https://placehold.co/1200x900/e9f5f5/000000?text=AI+Research',
+        dark: 'https://placehold.co/1200x900/1a2a2a/ffffff?text=AI+Research',
+    },
+    tags: ['PyTorch', 'LLM', 'AI', 'JAX'],
+    link: '/docs/skills/ai-research',
+    layout: 'imageLeft',
+  },
+];
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`Home`}
-      description="We are Altruistic Hive.">
-      <HomepageHeader />
-      <main>
-        <FadingFeatures /> 
-        <floating />
-      </main>
+    <Layout noFooter>
+      <div className={styles.snapContainer}>
+        <HomepageHeader {...homepageHeaderData} />
+        <main>
+          <FloatingShowcase showcaseItems={floatingShowcaseData} />
+          <FadingFeatures featureItems={fadingFeaturesData} />
+            <LogoTicker {...logoTickerData} />
+        </main>
+        <div className={styles.footerContainer}>
+          <Footer />
+        </div>
+      </div>
     </Layout>
   );
 }

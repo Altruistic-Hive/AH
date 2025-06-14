@@ -3,39 +3,22 @@ import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
+import Heading from '@theme/Heading';
 
-const showcaseData = [
-  {
-    title: "실제 앱 디자인을 탐색하세요.",
-    description: "최고의 제품 팀들이 앱을 어떻게 디자인하는지 알아보세요. 실제 앱의 UI/UX 플로우를 광범위하게 제공하여 당신의 프로젝트에 영감을 더합니다.",
-    imageUrl: {
-        light: 'https://placehold.co/800x600/f0f2f5/000000?text=Light+1',
-        dark: 'https://placehold.co/800x600/1a1a1a/ffffff?text=Dark+1',
-    },
-    link: '/docs/intro',
-    layout: 'right',
-  },
-  {
-    title: "인터랙티브한 사용자 플로우.",
-    description: "정적인 화면만 보지 마세요. 인터랙티브 프로토타입 모드와 비디오를 통해 전체 사용자 여정을 단계별로 경험할 수 있습니다.",
-    imageUrl: {
-        light: 'https://placehold.co/800x600/e9f5f5/000000?text=Light+2',
-        dark: 'https://placehold.co/800x600/1a2a2a/ffffff?text=Dark+2',
-    },
-    link: 'https://github.com/facebook/docusaurus',
-    layout: 'left',
-  },
-  {
-    title: "영감에서 실제 창작까지.",
-    description: "당신의 워크플로우와 완벽하게 통합됩니다. 디자인을 Figma로 복사하고, 컬렉션에 저장하고, 팀과 손쉽게 공유하세요.",
-    imageUrl: {
-        light: 'https://placehold.co/800x600/f9f3e7/000000?text=Light+3',
-        dark: 'https://placehold.co/800x600/2a231a/ffffff?text=Dark+3',
-    },
-    link: '/blog',
-    layout: 'right',
-  }
-];
+type ShowcaseItemData = {
+  title: string;
+  description: string;
+  imageUrl: {
+    light: string;
+    dark: string;
+  };
+  link: string;
+  layout: 'left' | 'right';
+};
+
+type FloatingShowcaseProps = {
+  showcaseItems: ShowcaseItemData[];
+};
 
 // Typing effect Hook
 const useTypingEffect = (text: string, start: boolean, options: { typingSpeed?: number; } = {}) => {
@@ -94,13 +77,12 @@ const ShowcaseItem = ({ item, isVisible, animationStyle }) => {
   );
 };
 
-export default function FloatingShowcase() {
+export default function FloatingShowcase({ showcaseItems }: FloatingShowcaseProps) {
   const [activatedIndices, setActivatedIndices] = useState(new Set<number>());
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // 각 아이템에 대한 랜덤 애니메이션 스타일 생성
   const animationStyles = useMemo(() => 
-    showcaseData.map(() => {
+    showcaseItems.map(() => {
       const randomInRange = (min, max) => Math.random() * (max - min) + min;
       return {
         '--duration': `${randomInRange(20, 30)}s`,
@@ -115,7 +97,7 @@ export default function FloatingShowcase() {
         '--y3': `${randomInRange(-12, 12)}px`,
         '--r3': `${randomInRange(-2, 2)}deg`,
       } as React.CSSProperties;
-    }), []);
+    }), [showcaseItems]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -135,11 +117,15 @@ export default function FloatingShowcase() {
     const currentRefs = refs.current;
     currentRefs.forEach(ref => { if (ref) observer.observe(ref); });
     return () => { currentRefs.forEach(ref => { if (ref) observer.unobserve(ref); }); };
-  }, []);
+  }, [showcaseItems]);
+
+  if (!showcaseItems || showcaseItems.length === 0) {
+      return null;
+  }
 
   return (
     <div className={styles.container}>
-      {showcaseData.map((item, index) => (
+      {showcaseItems.map((item, index) => (
         <section key={index} ref={el => refs.current[index] = el} className={styles.section}>
           <ShowcaseItem 
             item={item} 

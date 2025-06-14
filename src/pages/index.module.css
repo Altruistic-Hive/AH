@@ -1,6 +1,13 @@
 @keyframes blink {
   50% { opacity: 0; }
 }
+.snapContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+/* heroBanner는 이제 스냅 컨테이너의 자식입니다. */
 .heroBanner {
   height: 100vh;
   display: flex;
@@ -13,6 +20,7 @@
   transition: background-color 1s ease-in-out;
   scroll-snap-align: start; /* 스냅 지점으로 설정 */
 }
+
 .heroBg {
   position: absolute;
   top: 0;
@@ -121,4 +129,8 @@
 
 html[data-theme='light'] .imageCredit {
   color: rgba(0, 0, 0, 0.6);
+}
+
+.footerContainer {
+  scroll-snap-align: end; 
 }

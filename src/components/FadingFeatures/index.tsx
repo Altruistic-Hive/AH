@@ -5,66 +5,52 @@ import clsx from 'clsx';
 import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
 
-const featuredData = [
-  {
-    title: 'Explore entire user journeys',
-    description: 'Walk through entire user flows, step by step. See how the best apps design their onboarding, editing profiles, and more.',
-    imageUrl: {
-        light: 'https://placehold.co/1200x900/f0f2f5/000000?text=Light+Flow',
-        dark: 'https://placehold.co/1200x900/1a1a1a/ffffff?text=Dark+Flow',
-    },
-    tags: ['Flows', 'UX'],
-    link: '/docs/intro',
-    layout: 'imageRight', 
-  },
-  {
-    title: 'Search for specific patterns',
-    description: 'Looking for a specific UI element? Search for screens with specific components like cards, bottom sheets, and banners. This description is intentionally made longer to serve as the basis for the fixed height of the section, ensuring that no layout shifts occur during content transitions.',
-    imageUrl: {
-        light: 'https://placehold.co/1200x900/e9f5f5/000000?text=Light+Patterns',
-        dark: 'https://placehold.co/1200x900/1a2a2a/ffffff?text=Dark+Patterns',
-    },
-    tags: ['Patterns', 'React', 'Component'],
-    link: 'https://github.com/facebook/docusaurus',
-    layout: 'imageLeft',
-  },
-  {
-    title: 'Analyze visual design',
-    description: 'Break down the design of top-tier apps. Understand their use of color, typography, and layout to create stunning user experiences.',
-    imageUrl: {
-        light: 'https://placehold.co/1200x900/f9f3e7/000000?text=Light+Design',
-        dark: 'https://placehold.co/1200x900/2a231a/ffffff?text=Dark+Design',
-    },
-    tags: ['Design', 'Inspiration'],
-    link: '/blog',
-    layout: 'imageOverlay',
-  },
-];
+type FeatureItem = {
+  title: string;
+  description: string;
+  imageUrl: {
+    light: string;
+    dark: string;
+  };
+  tags: string[];
+  link: string;
+  layout: 'imageLeft' | 'imageRight' | 'imageOverlay';
+};
 
-export default function FadingFeatures(): JSX.Element {
+type FadingFeaturesProps = {
+  features: FeatureItem[];
+};
+
+export default function FadingFeatures({ features }: FadingFeaturesProps): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const sizerRef = useRef<HTMLDivElement>(null);
   const [sectionHeight, setSectionHeight] = useState(0);
+  const sizerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout>(null);
 
-  const currentFeature = featuredData[currentIndex];
-
+  // features prop이 없거나 비어있으면 렌더링하지 않음
+  if (!features || features.length === 0) {
+    return null;
+  }
+  
+  const currentFeature = features[currentIndex];
+  
+  // 가장 긴 콘텐츠를 기준으로 높이를 계산하는 로직
   useEffect(() => {
     if (sizerRef.current) {
-      const height = sizerRef.current.offsetHeight;
-      // 섹션의 높이를 Sizer 높이와 동일하게 설정하여, 패딩은 내부에서 처리하도록 함
+      const height = sizerRef.current.offsetHeight + 256;
       setSectionHeight(height);
     }
-  }, []);
+  }, [features]); // features 데이터가 변경될 때 한 번만 실행
 
+  // 자동 전환 로직
   useEffect(() => {
     const scheduleNext = () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         setIsFading(true);
         setTimeout(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredData.length);
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
           setIsFading(false);
         }, 500);
       }, 5000);
@@ -72,14 +58,14 @@ export default function FadingFeatures(): JSX.Element {
 
     scheduleNext();
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, []);
-  
-  const longestFeature = [...featuredData].sort((a, b) => (b.description.length) - (a.description.length))[0];
+  }, [features.length]);
+
+  const longestFeature = [...features].sort((a, b) => (b.description.length) - (a.description.length))[0];
 
   return (
     <section 
         className={styles.featureSection}
-        style={{ height: sectionHeight ? `${sectionHeight}px` : '100vh' }}
+        style={{ minHeight: sectionHeight ? `${sectionHeight}px` : '100vh' }}
     >
       {/* Sizer Div: 높이 계산의 기준 */}
       <div ref={sizerRef} className={styles.sizer}>
@@ -99,10 +85,10 @@ export default function FadingFeatures(): JSX.Element {
               </div>
           </div>
       </div>
-      
-      {/* 실제 보이는 콘텐츠 */}
+
+      {/* Content Wrapper: 실제 보이는 콘텐츠 */}
       <div className={styles.contentWrapper}>
-        <Link to={currentFeature.link} className={styles.containerLink}>
+          <Link to={currentFeature.link} className={styles.containerLink}>
             <div className={clsx(styles.featureContainer, styles[currentFeature.layout], isFading && styles.fading)}>
               <div className={styles.textColumn}>
                 <div className={styles.tagContainer}>

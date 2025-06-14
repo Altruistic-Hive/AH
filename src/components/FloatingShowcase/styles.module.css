@@ -1,59 +1,55 @@
 /* --- Keyframes for Dynamic Animation --- */
-@keyframes entropic-float-1 {
-  0% { transform: translate(0, 0) rotate(-1deg); }
-  50% { transform: translate(8px, -12px) rotate(1deg); }
-  100% { transform: translate(0, 0) rotate(-1deg); }
-}
-
-@keyframes entropic-float-2 {
-  0% { transform: translate(0, 0) rotate(0.5deg); }
-  50% { transform: translate(-10px, 5px) rotate(-0.5deg); }
-  100% { transform: translate(0, 0) rotate(0.5deg); }
-}
-
-@keyframes entropic-float-3 {
-  0% { transform: translate(0, 0) rotate(1deg); }
-  50% { transform: translate(5px, 10px) rotate(-1deg); }
-  100% { transform: translate(0, 0) rotate(1deg); }
+@keyframes entropic-float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(var(--x1), var(--y1)) rotate(var(--r1)); }
+  66% { transform: translate(var(--x2), var(--y2)) rotate(var(--r2)); }
+  100% { transform: translate(var(--x3), var(--y3)) rotate(var(--r3)); }
 }
 
 @keyframes blink {
   50% { opacity: 0; }
 }
 
+/* --- Main Containers --- */
 .container {
   background-color: var(--ifm-background-color);
 }
+
 .section {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8rem 2rem;
+  padding: 12rem 2rem; /* 상하 패딩을 더 확대하여 여유 공간 확보 */
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
 }
+
 .itemLink {
   display: block;
   text-decoration: none;
   color: inherit;
   border-radius: 24px;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1300px; /* 콘텐츠 최대 너비 확대 */
   position: relative;
 }
+
 .showcaseItem {
   display: grid;
-  gap: 8rem; /* 간격 확대 */
+  gap: 10rem; /* 텍스트와 이미지 간격 확대 */
   align-items: center;
   width: 100%;
   padding: 2rem;
   border-radius: 24px;
   transition: background-color 0.3s ease;
 }
+
 .itemLink:hover .showcaseItem {
   background-color: var(--ifm-background-surface-color);
 }
+
+/* --- Layout Variants --- */
 .layout--right {
   grid-template-columns: 1fr 1.2fr; /* 이미지 비율 조정 */
 }
@@ -63,27 +59,32 @@
 .layout--left .imageContainer {
   order: -1;
 }
+
+/* --- Text & Typing --- */
 .textContainer {
-  min-height: 22rem; /* 높이 소폭 증가 */
+  min-height: 25rem; /* 텍스트 컨테이너 높이 확대 */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .title {
-  font-size: 3.5rem; /* 폰트 크기 증가 */
+  font-size: 4rem; /* 폰트 크기 확대 */
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  min-height: 8rem; 
+  min-height: 9.6rem; 
   color: var(--ifm-font-color-base);
 }
+
 .description {
-  font-size: 1.2rem; /* 폰트 크기 증가 */
+  font-size: 1.3rem; /* 폰트 크기 확대 */
   color: var(--ifm-font-color-secondary);
   line-height: 1.7;
-  min-height: 11rem;
+  min-height: 11.5rem;
 }
+
 .cursor {
   animation: blink 1.2s step-end infinite;
   font-weight: 300;
@@ -91,20 +92,22 @@
   color: #ccc;
   visibility: hidden;
 }
+
 .typingActive .cursor {
   visibility: visible;
 }
+
+
+/* --- Image & Animation --- */
 .imageContainer {
   position: relative;
+  animation-name: entropic-float;
   animation-duration: var(--duration);
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-delay: var(--delay);
 }
-.entropic-float-1 { animation-name: entropic-float-1; }
-.entropic-float-2 { animation-name: entropic-float-2; }
-.entropic-float-3 { animation-name: entropic-float-3; }
 
 .showcaseImage {
   width: 100%;
@@ -112,6 +115,7 @@
   box-shadow: var(--ifm-global-shadow-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .itemLink:hover .showcaseImage {
   transform: scale(1.03);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
@@ -119,22 +123,25 @@
 html[data-theme='dark'] .itemLink:hover .showcaseImage {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
+
 .imageGlow {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 16px; 
+  border-radius: 16px;
   box-shadow: 0 0 0px 0px var(--custom-glow-color);
   opacity: 0;
   transition: opacity 0.4s ease, box-shadow 0.4s ease;
   pointer-events: none;
 }
+
 .itemLink:hover .imageGlow {
   opacity: 0.5;
   box-shadow: 0 0 50px 5px var(--custom-glow-color);
 }
+
 .arrowLink {
   display: inline-block;
   margin-top: 1.5rem;
@@ -144,10 +151,14 @@ html[data-theme='dark'] .itemLink:hover .showcaseImage {
   transform: translateX(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .itemLink:hover .arrowLink {
   opacity: 1;
   transform: translateX(0);
 }
+
+
+/* --- Responsive --- */
 @media (max-width: 996px) {
   .section { padding: 4rem 1.5rem; }
   .showcaseItem { grid-template-columns: 1fr; gap: 3rem; }
