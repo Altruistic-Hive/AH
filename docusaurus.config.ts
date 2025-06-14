@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'AH',
   tagline: 'Altruistic Hive',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/AH_B.svg',
 
   // Set the production url of your site here
   url: 'https://altruistic-hive.org',
