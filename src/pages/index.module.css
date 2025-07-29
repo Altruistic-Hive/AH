@@ -134,3 +134,13 @@ html[data-theme='light'] .imageCredit {
 .footerContainer {
   scroll-snap-align: end; 
 }
+
+.objectTickerGroup {
+  scroll-snap-align: start;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+}

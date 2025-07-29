@@ -1,11 +1,12 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import HomepageHeader from '@site/src/components/HomepageHeader';
-import LogoTicker from '@site/src/components/LogoTicker';
+import HomepageHeader from '@site/src/components/HomepageHeader'
 import FloatingShowcase from '@site/src/components/FloatingShowcase';
 import FadingFeatures from '@site/src/components/FadingFeatures';
 import Footer from '@theme/Footer';
 import styles from './index.module.css';
+import ObjectTicker from '@site/src/components/ObjectTicker';
+import GithubMembersTicker from '@site/src/components/GithubMembersTicker';
 
 const homepageHeaderData = {
   titleLines: ['The', 'Altruistic', 'Hive', 'Where', 'Thrives.'],
@@ -36,22 +37,22 @@ const homepageHeaderData = {
   button: { text: 'View My Work', link: '/docs/intro' },
 };
 
-// 2. LogoCarousel 데이터 (제목 및 링크 수정)
-const logoTickerData = {
+// 2. docsTickerData 데이터 (제목 및 링크 수정)
+const docsTickerData = {
     title: "Topics We've Explored",
     logos: [
-      { imgSrc: 'https://cdn.svgporn.com/logos/javascript.svg', href: '/blog/tags/javascript', alt: 'JavaScript' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/java.svg', href: '/blog/tags/java', alt: 'Java' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/python.svg', href: '/blog/tags/python', alt: 'Python' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/react.svg', href: '/blog/tags/react', alt: 'React' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/spring-icon.svg', href: '/blog/tags/spring', alt: 'Spring' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/oracle.svg', href: '/blog/tags/oracle', alt: 'Oracle DB' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/mysql.svg', href: '/blog/tags/mysql', alt: 'MySQL' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/docker-icon.svg', href: '/blog/tags/docker', alt: 'Docker' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/kubernetes.svg', href: '/blog/tags/kubernetes', alt: 'Kubernetes' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/aws.svg', href: '/blog/tags/aws', alt: 'AWS' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/typescript-icon.svg', href: '/blog/tags/typescript', alt: 'TypeScript' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/nodejs-icon.svg', href: '/blog/tags/node-js', alt: 'Node.js' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/javascript.svg', href: '/docs/javascript', alt: 'JavaScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/java.svg', href: '/docs/java', alt: 'Java' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/python.svg', href: '/docs/python', alt: 'Python' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/react.svg', href: '/docs/react', alt: 'React' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/spring-icon.svg', href: '/docs/spring', alt: 'Spring' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/oracle.svg', href: '/docs/oracle', alt: 'Oracle DB' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/mysql.svg', href: '/docs/mysql', alt: 'MySQL' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/docker-icon.svg', href: '/docs/docker', alt: 'Docker' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/kubernetes.svg', href: '/docs/kubernetes', alt: 'Kubernetes' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/aws.svg', href: '/docs/aws', alt: 'AWS' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/typescript-icon.svg', href: '/docs/typescript', alt: 'TypeScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/nodejs-icon.svg', href: '/docs/nodejs', alt: 'Node.js' },
     ]
   };
 
@@ -123,7 +124,15 @@ export default function Home(): JSX.Element {
         <main>
           <FloatingShowcase showcaseItems={floatingShowcaseData} />
           <FadingFeatures featureItems={fadingFeaturesData} />
-            <LogoTicker {...logoTickerData} />
+          <div className={styles.objectTickerGroup}>
+            <ObjectTicker
+              title="Topics We've Explored"
+              objects={docsTickerData.logos}
+              direction="left"
+            />
+            {/* 멤버 소개는 GithubMembersTicker로 대체 */}
+            <GithubMembersTicker />
+          </div>
         </main>
         <div className={styles.footerContainer}>
           <Footer />

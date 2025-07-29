@@ -1,0 +1,9 @@
+{
+  "label": "AWS",
+  "position": 1,
+  "description": "확장 가능한 인프라와 솔루션을 위한 AWS 클라우드 서비스를 알아봅니다.",
+  "link": {
+    "type": "generated-index",
+    "description": "Amazon Web Services(AWS)는 전 세계에서 가장 널리 사용되는 클라우드 플랫폼입니다. EC2, S3, Lambda 등 핵심 서비스부터 고급 아키텍처 패턴까지 AWS 클라우드 생태계를 탐구하세요."
+  }
+} 

@@ -2,46 +2,27 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# 🐝 Hive Documentation
 
-Let's discover **Docusaurus in less than 5 minutes**.
+안녕하세요! **Altruistic Hive**의 기술 문서에 오신 것을 환영합니다.
 
-## Getting Started
+## 📚 우리가 다루는 기술들
 
-Get started by **creating a new site**.
+우리 팀은 다양한 기술 스택을 탐구하고 있습니다:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### 🎯 주요 기술 영역
 
-### What you'll need
+- **프론트엔드**: JavaScript, TypeScript, React
+- **백엔드**: Java, Spring, Node.js, Python
+- **데이터베이스**: Oracle, MySQL
+- **클라우드 & DevOps**: Docker, Kubernetes, AWS
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### 🚀 시작하기
 
-## Generate a new site
+왼쪽 사이드바에서 관심 있는 기술을 선택하여 자세한 내용을 확인해보세요.
 
-Generate a new Docusaurus site using the **classic template**.
+각 기술별로 기본 개념부터 실무 적용까지 단계별로 설명되어 있습니다.
 
-The classic template will automatically be added to your project after you run the command:
+---
 
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+*더 궁금한 점이 있으시면 언제든 [Discord](https://discord.gg/GnrUfu2MQt)에서 문의해주세요!* 

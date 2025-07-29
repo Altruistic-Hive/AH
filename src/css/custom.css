@@ -1,17 +1,27 @@
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes scrollReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Hive(꿀벌) 테마 강조색 */
 :root {
-  --ifm-color-primary: #0d1a49;
-  --ifm-color-primary-dark: #0c1741;
-  --ifm-color-primary-darker: #0b153c;
-  --ifm-color-primary-darkest: #091132;
-  --ifm-color-primary-light: #0e1d51;
-  --ifm-color-primary-lighter: #0f1f56;
-  --ifm-color-primary-lightest: #112461;
+  --ifm-color-primary: #FFC107;
+  --ifm-color-primary-dark: #FFA000;
+  --ifm-color-primary-darker: #FF8F00;
+  --ifm-color-primary-darkest: #FF6F00;
+  --ifm-color-primary-light: #FFD54F;
+  --ifm-color-primary-lighter: #FFE082;
+  --ifm-color-primary-lightest: #FFF8E1;
 
   --ifm-background-color: #ffffff;
   --ifm-background-surface-color: #f7f7f7;
@@ -23,7 +33,7 @@ html {
   --ifm-font-family-base: 'Inter', sans-serif;
   --ifm-button-border-radius: 8px;
   
-  --custom-glow-color: #7d8eff;
+  --custom-glow-color: #FFD600;
   --custom-tag-background: #f0f0f0;
   --custom-tag-text: #555;
   --custom-hero-background: #ffffff;
@@ -35,30 +45,26 @@ html {
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #8a9fff;
-  --ifm-color-primary-dark: #697fff;
-  --ifm-color-primary-darker: #5b72ff;
-  --ifm-color-primary-darkest: #3b53ff;
-  --ifm-color-primary-light: #aab9ff;
-  --ifm-color-primary-lighter: #b8c4ff;
-  --ifm-color-primary-lightest: #d6dcff;
-
-  --ifm-background-color: #0d1117;
-  --ifm-background-surface-color: #161b22;
-  --ifm-font-color-base: #e3e3e3;
-  --ifm-font-color-secondary: #9a9a9a;
-  --ifm-global-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --ifm-global-shadow-md: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-
-  --custom-glow-color: #8a9fff;
-  --custom-tag-background: rgba(138, 159, 255, 0.1);
-  --custom-tag-text: #b8c4ff;
-  --custom-hero-background: #0d1117;
-  --custom-section-background: #0d1117;
-  --custom-hero-text-color: #ffffff;
-  --custom-hero-subtitle-color: #e0e0e0;
-  --custom-hero-overlay-color: rgba(0, 0, 0, 0.6);
-  --custom-hero-text-stroke-color: rgba(0, 0, 0, 0.7);
+  --ifm-color-primary: #FFC107;
+  --ifm-color-primary-dark: #FFA000;
+  --ifm-color-primary-darker: #FF8F00;
+  --ifm-color-primary-darkest: #FF6F00;
+  --ifm-color-primary-light: #FFD54F;
+  --ifm-color-primary-lighter: #FFE082;
+  --ifm-color-primary-lightest: #FFF8E1;
+  --custom-glow-color: #FFD600;
+  --ifm-background-color: #181818;
+  --ifm-background-surface-color: #232323;
+  --ifm-font-color-base: #fffbe7;
+  --ifm-font-color-secondary: #ffe082;
+  --custom-tag-background: #232323;
+  --custom-tag-text: #ffe082;
+  --custom-hero-background: #181818;
+  --custom-section-background: #232323;
+  --custom-hero-text-color: #fffbe7;
+  --custom-hero-subtitle-color: #ffe082;
+  --custom-hero-overlay-color: rgba(0,0,0,0.7);
+  --custom-hero-text-stroke-color: rgba(0,0,0,0.7);
 }
 
 html, body, .main-wrapper, .navbar, footer.footer, section, div, p, h1, h2, h3, h4 {
@@ -73,11 +79,37 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.navbar--fixed-top {
-  position: fixed;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 0 2rem;
   background: transparent !important;
   box-shadow: none !important;
-  transition: background-color 0.3s ease;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar__items {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.navbar__items--right {
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.navbar__items--left {
+  justify-content: flex-start;
+  flex: 1;
 }
 
 html[data-navbar-spy-is-at-top='false'] .navbar--fixed-top {
@@ -163,6 +195,11 @@ html[data-theme='dark'] .footer a.footer__cta-button {
 .footer a.footer__cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px -5px color-mix(in srgb, var(--ifm-color-primary) 40%, transparent);
+  color: var(--ifm-color-primary-darkest);
+}
+
+html[data-theme='dark'] .footer a.footer__cta-button:hover {
+  color: var(--ifm-color-primary-darkest);
 }
 
 .footer .footer__col:last-child .footer__items {

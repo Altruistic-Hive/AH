@@ -1,0 +1,9 @@
+{
+  "label": "React",
+  "position": 1,
+  "description": "현대적인 UI를 만드는 강력한 라이브러리 React를 다룹니다.",
+  "link": {
+    "type": "generated-index",
+    "description": "React는 사용자 인터페이스를 구축하기 위한 JavaScript 라이브러리입니다. 컴포넌트 기반 아키텍처와 가상 DOM을 통해 효율적이고 재사용 가능한 UI를 만드는 방법을 학습하세요."
+  }
+} 

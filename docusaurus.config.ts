@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'AH',
   tagline: 'Altruistic Hive',
-  favicon: 'img/AH_B.svg',
+  favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
   url: 'https://altruistic-hive.org',
@@ -85,7 +85,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left', // 왼쪽 아이템
-          label: 'Projects',
+          label: 'Docs', // 'Projects'에서 'Docs'로 변경
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -95,6 +95,8 @@ const config: Config = {
         },
       ],
     },
+    // 강조색 설정
+    primaryColor: '#FFC107',
     footer: {
       links: [
         {
@@ -104,8 +106,8 @@ const config: Config = {
               html: `<p class="footer__cta-description">Have a project in mind or just want to say hi? <br />Feel free to reach out.</p>`,
             },
             {
-              label: 'your-email@example.com',
-              href: 'mailto:your-email@example.com',
+              label: 'Join our Discord',
+              href: 'https://discord.gg/GnrUfu2MQt',
               className: 'footer__cta-button'
             }
           ],

@@ -1,0 +1,68 @@
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes scrollReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.objectTickerContainer {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--ifm-background-color);
+}
+
+.carouselTitle {
+  color: var(--ifm-font-color-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.objectSlider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.objectTrack {
+  display: flex;
+}
+
+.objectSlide {
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2.5rem;
+  text-decoration: none;
+}
+
+.objectSlide img {
+  max-height: 40px;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: grayscale(0.7);
+  transition: all 0.3s ease;
+}
+
+html[data-theme='dark'] .objectSlide img {
+  filter: grayscale(0.7);
+  opacity: 0.5;
+}
+
+.objectSlide:hover img {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.15);
+}
+html[data-theme='dark'] .objectSlide:hover img {
+  filter: none;
+  opacity: 1;
+}

@@ -20,30 +20,98 @@ type FloatingShowcaseProps = {
   showcaseItems: ShowcaseItemData[];
 };
 
-// Typing effect Hook
-const useTypingEffect = (text: string, start: boolean, options: { typingSpeed?: number; } = {}) => {
-  const { typingSpeed = 50 } = options;
+// 오타용 문자셋
+const KOR = '가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허고노도로모보소오조초코토포호구누두루무부수우주추쿠투푸후기니디리미비시이지치키티피히';
+const ENG = 'abcdefghijklmnopqrstuvwxyz';
+
+function getRandomKorChar() {
+  return KOR[Math.floor(Math.random() * KOR.length)];
+}
+function getRandomEngChar() {
+  return ENG[Math.floor(Math.random() * ENG.length)];
+}
+function isKorean(char) {
+  return /[가-힣]/.test(char);
+}
+function isEnglish(char) {
+  return /[a-zA-Z]/.test(char);
+}
+
+// 오타/지우기/재타이핑 포함 타이핑 훅
+const useTypingEffect = (
+  text: string,
+  start: boolean,
+  options: { typingSpeed?: number; typoChance?: number; typoDelay?: number } = {}
+) => {
+  // 타자 속도 더 빠르게, 오타 시 잠깐 멈춤
+  const { typingSpeed = 32, typoChance = 0.08, typoDelay = 120 } = options;
   const [displayText, setDisplayText] = useState('');
   const [isDone, setIsDone] = useState(false);
+  const [typoState, setTypoState] = useState<null | { pos: number; wrongChar: string; phase: 'typo' | 'delete' }>(null);
 
   useEffect(() => {
     if (!start) {
       setDisplayText('');
       setIsDone(false);
+      setTypoState(null);
       return;
     }
-
-    if (displayText.length === text.length) {
+    if (displayText.length === text.length && !typoState) {
       setIsDone(true);
       return;
     }
-    
-    const intervalId = setInterval(() => {
-      setDisplayText(text.substring(0, displayText.length + 1));
-    }, typingSpeed);
-
-    return () => clearInterval(intervalId);
-  }, [text, displayText, start, typingSpeed]);
+    // 오타 상태
+    if (typoState) {
+      if (typoState.phase === 'typo') {
+        // 오타 보여주기 후 삭제
+        const timeout = setTimeout(() => {
+          setDisplayText(text.substring(0, typoState.pos));
+          setTypoState({ ...typoState, phase: 'delete' });
+        }, typoDelay);
+        return () => clearTimeout(timeout);
+      } else if (typoState.phase === 'delete') {
+        // 오타 삭제 후 재타이핑
+        const timeout = setTimeout(() => {
+          setTypoState(null);
+        }, typingSpeed);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      // 오타가 아닐 때
+      if (displayText.length < text.length) {
+        // 오타 발생 여부 결정
+        if (
+          displayText.length > 0 &&
+          Math.random() < typoChance &&
+          displayText.length < text.length - 1 // 마지막 글자엔 오타 X
+        ) {
+          const nextChar = text[displayText.length];
+          let wrongChar = '';
+          if (isKorean(nextChar)) {
+            // 한글 오타
+            do {
+              wrongChar = getRandomKorChar();
+            } while (wrongChar === nextChar);
+          } else if (isEnglish(nextChar)) {
+            // 영어 오타
+            do {
+              wrongChar = getRandomEngChar();
+            } while (wrongChar.toLowerCase() === nextChar.toLowerCase());
+          } else {
+            wrongChar = nextChar;
+          }
+          setDisplayText(text.substring(0, displayText.length) + wrongChar);
+          setTypoState({ pos: displayText.length, wrongChar, phase: 'typo' });
+          return;
+        }
+        // 정상 타이핑
+        const timeout = setTimeout(() => {
+          setDisplayText(text.substring(0, displayText.length + 1));
+        }, typingSpeed);
+        return () => clearTimeout(timeout);
+      }
+    }
+  }, [text, displayText, start, typingSpeed, typoChance, typoDelay, typoState]);
 
   return { displayText, isDone };
 };

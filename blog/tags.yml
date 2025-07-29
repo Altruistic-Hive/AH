@@ -1,19 +1,16 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+webinar:
+  label: WEBINAR
+  permalink: /webinar
+  description: Team AH's Webinar
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+ai:
+  label: AI
+  permalink: /ai
+  description: About Artificial Intelligence
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+
+
+
+
+

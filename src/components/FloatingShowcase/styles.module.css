@@ -40,13 +40,15 @@
   gap: 10rem; /* 텍스트와 이미지 간격 확대 */
   align-items: center;
   width: 100%;
+  max-width: 1300px;
+  box-sizing: border-box;
   padding: 2rem;
   border-radius: 24px;
   transition: background-color 0.3s ease;
 }
 
 .itemLink:hover .showcaseItem {
-  background-color: var(--ifm-background-surface-color);
+  background-color: transparent !important;
 }
 
 /* --- Layout Variants --- */
@@ -166,4 +168,60 @@ html[data-theme='dark'] .itemLink:hover .showcaseImage {
   .textContainer { text-align: center; min-height: auto; }
   .title { font-size: 2.5rem; min-height: auto; }
   .description { min-height: auto; }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+  .section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .itemLink {
+    max-width: 100vw;
+    border-radius: 12px;
+  }
+  .showcaseItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.7rem;
+    max-width: 100vw;
+    min-height: unset;
+    height: auto;
+    box-sizing: border-box;
+  }
+  .imageContainer {
+    width: 100%;
+    max-width: 90vw;
+    margin-bottom: 0.7rem;
+  }
+  .showcaseImage {
+    width: 100%;
+    max-width: 90vw;
+    height: auto;
+    border-radius: 10px;
+  }
+  .textContainer {
+    min-height: unset;
+    text-align: left;
+    word-break: break-all;
+    padding: 0.5rem 0;
+  }
+  .title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .description {
+    font-size: 0.95rem;
+    min-height: unset;
+  }
+  .arrowLink {
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+  }
 }
