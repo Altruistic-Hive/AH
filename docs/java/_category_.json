@@ -1,7 +1,6 @@
 {
   "label": "Java",
   "position": 1,
-  "description": "백엔드, 안드로이드, 엔터프라이즈 개발에 널리 쓰이는 Java를 탐구합니다.",
   "link": {
     "type": "generated-index",
     "description": "Java는 안정성과 확장성을 갖춘 객체지향 프로그래밍 언어입니다. 엔터프라이즈 애플리케이션부터 안드로이드 앱까지, Java의 핵심 개념과 실무 활용법을 알아보세요."

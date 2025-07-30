@@ -41,18 +41,18 @@ const homepageHeaderData = {
 const docsTickerData = {
     title: "Topics We've Explored",
     logos: [
-      { imgSrc: 'https://cdn.svgporn.com/logos/javascript.svg', href: '/docs/javascript', alt: 'JavaScript' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/java.svg', href: '/docs/java', alt: 'Java' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/python.svg', href: '/docs/python', alt: 'Python' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/react.svg', href: '/docs/react', alt: 'React' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/spring-icon.svg', href: '/docs/spring', alt: 'Spring' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/oracle.svg', href: '/docs/oracle', alt: 'Oracle DB' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/mysql.svg', href: '/docs/mysql', alt: 'MySQL' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/docker-icon.svg', href: '/docs/docker', alt: 'Docker' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/kubernetes.svg', href: '/docs/kubernetes', alt: 'Kubernetes' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/aws.svg', href: '/docs/aws', alt: 'AWS' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/typescript-icon.svg', href: '/docs/typescript', alt: 'TypeScript' },
-      { imgSrc: 'https://cdn.svgporn.com/logos/nodejs-icon.svg', href: '/docs/nodejs', alt: 'Node.js' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/javascript.svg', href: '/docs/category/javascript', alt: 'JavaScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/java.svg', href: '/docs/category/java', alt: 'Java' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/python.svg', href: '/docs/category/python', alt: 'Python' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/react.svg', href: '/docs/category/react', alt: 'React' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/spring-icon.svg', href: '/docs/category/spring', alt: 'Spring' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/oracle.svg', href: '/docs/category/oracle-db', alt: 'Oracle DB' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/mysql.svg', href: '/docs/category/mysql', alt: 'MySQL' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/docker-icon.svg', href: '/docs/category/docker', alt: 'Docker' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/kubernetes.svg', href: '/docs/category/kubernetes', alt: 'Kubernetes' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/aws.svg', href: '/docs/category/aws', alt: 'AWS' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/typescript-icon.svg', href: '/docs/category/typescript', alt: 'TypeScript' },
+      { imgSrc: 'https://cdn.svgporn.com/logos/nodejs-icon.svg', href: '/docs/category/nodejs', alt: 'Node.js' },
     ]
   };
 
