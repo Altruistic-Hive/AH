@@ -10,10 +10,11 @@
 }
 
 .carouselTitle {
+  font-family: var(--font-pixel);
   color: var(--ifm-font-color-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
@@ -42,34 +43,41 @@
   min-width: 220px;
   min-height: 90px;
   text-decoration: none;
-  border-radius: 16px;
+  border-radius: 8px;
   background: var(--ifm-background-surface-color);
   margin: 0.5rem 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  transition: box-shadow 0.2s, background 0.2s;
+  border: 2px solid var(--pixel-shadow);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  transition: box-shadow 0.2s ease, background 0.2s ease, transform 0.2s var(--bounce-timing);
 }
+
 .memberSlide:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+  box-shadow: 4px 7px 0px var(--pixel-shadow);
   background: var(--ifm-color-primary-lightest);
 }
+
 .memberImg {
   width: 56px;
   height: 56px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--ifm-color-primary);
-  background: #fff;
+  background: var(--ifm-background-color);
 }
+
 .memberInfo {
   text-align: left;
 }
+
 .memberName {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--ifm-font-color-base);
 }
+
 .memberRole {
   font-size: 0.95rem;
   color: var(--ifm-font-color-secondary);
   margin-top: 0.2rem;
-} 
+}

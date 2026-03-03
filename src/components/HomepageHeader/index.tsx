@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
 type DynamicItem = {
   word: string;
-  image?: string;  
-  keyword?: string;   
+  image?: string;
+  keyword?: string;
 };
 type Button = {
   text: string;
@@ -19,8 +20,7 @@ type HomepageHeaderProps = {
   subtitle: string;
   button: Button;
 };
-const PEXELS_API_KEY = 'VFb0BCIXnzIuyv8ggrpPOKhrmUfMrKWasUsAIOSqTgH1WL3Ixr701lR5';
-function useTypingAnimation(dynamicItems: DynamicItem[]) {
+function useTypingAnimation(dynamicItems: DynamicItem[], pexelsApiKey: string) {
   const [itemIndex, setItemIndex] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -35,27 +35,21 @@ function useTypingAnimation(dynamicItems: DynamicItem[]) {
     let timeout;
 
     const fetchImage = async (keyword: string) => {
-      if (!PEXELS_API_KEY || PEXELS_API_KEY === 'YOUR_PEXELS_API_KEY') {
-        console.error("Pexels API 키가 없습니다. 로컬 폴백 이미지를 사용합니다.");
-        setBackgroundImage(`/img/hero-backgrounds/${keyword.toLowerCase().split(',')[0]}.jpg`);
+      if (!pexelsApiKey) {
         return;
       }
       try {
         const response = await fetch(`https://api.pexels.com/v1/search?query=${keyword}&per_page=15`, {
-          headers: { Authorization: PEXELS_API_KEY },
+          headers: { Authorization: pexelsApiKey },
         });
         if (!response.ok) throw new Error(`Pexels API Error: ${response.statusText}`);
         const data = await response.json();
         if (data.photos && data.photos.length > 0) {
           const randomPhoto = data.photos[Math.floor(Math.random() * data.photos.length)];
           setBackgroundImage(randomPhoto.src.large2x);
-        } else {
-          // 검색 결과가 없을 경우를 대비한 폴백
-          setBackgroundImage(`/img/hero-backgrounds/default.jpg`);
         }
-      } catch (error) {
-        console.error("Pexels 이미지 로딩 실패:", error);
-        setBackgroundImage(`/img/hero-backgrounds/default.jpg`);
+      } catch {
+        // Pexels API failed silently
       }
     };
 
@@ -106,8 +100,9 @@ function useTypingAnimation(dynamicItems: DynamicItem[]) {
 }
 
 export default function HomepageHeader({ titleLines, dynamicItems, subtitle, button }: HomepageHeaderProps) {
-  // isDeleting을 훅에서 받아옴
-  const { typedText, backgroundImage, isImageFadingOut, isDeleting } = useTypingAnimation(dynamicItems);
+  const { siteConfig } = useDocusaurusContext();
+  const pexelsApiKey = (siteConfig.customFields?.pexelsApiKey as string) || '';
+  const { typedText, backgroundImage, isImageFadingOut, isDeleting } = useTypingAnimation(dynamicItems, pexelsApiKey);
   const isTyping = typedText.length > 0 && !isDeleting;
 
   return (
@@ -121,15 +116,14 @@ export default function HomepageHeader({ titleLines, dynamicItems, subtitle, but
       <div className={styles.heroBgOverlay} />
       <div className={clsx("container", styles.heroContainer)}>
         <Heading as="h1" className={styles.heroTitle}>
-          <span className={styles.line}>The</span>
-          <span className={styles.line}>Altruistic</span>
-          <span className={styles.line}>Hive</span>
+          <span className={styles.line}>Welcome to the</span>
+          <span className={styles.lineAccent}>Altruistic Hive</span>
           <span className={styles.line}>Where</span>
           <span className={clsx(styles.dynamicWordContainer, isTyping && styles.isTyping)}>
             <span className={styles.dynamicWord}>{typedText}</span>
             <span className={styles.cursor}>|</span>
           </span>
-          <span className={styles.line}>Thrives.</span>
+          <span className={styles.line}>Happens!</span>
         </Heading>
         <p className={styles.heroSubtitle}>
           {subtitle}
@@ -143,7 +137,7 @@ export default function HomepageHeader({ titleLines, dynamicItems, subtitle, but
         </div>
       </div>
       <div className={styles.imageCredit}>
-        사진 제공: ©&nbsp;Pexels
+        Photo by Pexels
       </div>
     </header>
   );

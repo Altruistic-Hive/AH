@@ -14,10 +14,11 @@
 }
 
 .carouselTitle {
+  font-family: var(--font-pixel);
   color: var(--ifm-font-color-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
@@ -26,8 +27,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .objectTrack {
@@ -47,21 +48,22 @@
   max-height: 40px;
   width: 100%;
   object-fit: contain;
-  opacity: 0.5;
-  filter: grayscale(0.7);
-  transition: all 0.3s ease;
+  opacity: 0.4;
+  filter: grayscale(1);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s var(--bounce-timing);
 }
 
 html[data-theme='dark'] .objectSlide img {
-  filter: grayscale(0.7);
-  opacity: 0.5;
+  filter: grayscale(1) brightness(1.5);
+  opacity: 0.35;
 }
 
 .objectSlide:hover img {
   opacity: 1;
   filter: none;
-  transform: scale(1.15);
+  transform: scale(1.1) translateY(-4px);
 }
+
 html[data-theme='dark'] .objectSlide:hover img {
   filter: none;
   opacity: 1;

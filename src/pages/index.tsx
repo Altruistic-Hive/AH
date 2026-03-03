@@ -9,32 +9,21 @@ import ObjectTicker from '@site/src/components/ObjectTicker';
 import GithubMembersTicker from '@site/src/components/GithubMembersTicker';
 
 const homepageHeaderData = {
-  titleLines: ['The', 'Altruistic', 'Hive', 'Where', 'Thrives.'],
+  titleLines: ['Welcome to the', 'Altruistic Hive', 'Where', 'Happens!'],
   dynamicItems: [
-    { word: 'Collaboration', keyword: 'collaboration' },
-    { word: 'Synergy', keyword: 'synergy' },
-    { word: 'Teamwork', keyword: 'teamwork' },
-    { word: 'Unity', keyword: 'unity' },
-    { word: 'Partnership', keyword: 'partnership' },
-    { word: 'Innovation', keyword: 'innovation' },
-    { word: 'Creativity', keyword: 'creativity' },
-    { word: 'Growth', keyword: 'growth' },
-    { word: 'Potential', keyword: 'potential' },
-    { word: 'Excellence', keyword: 'excellence' },
-    { word: 'Progress', keyword: 'progress' },
-    { word: 'Community', keyword: 'community' },
-    { word: 'Support', keyword: 'support' },
-    { word: 'Kindness', keyword: 'kindness' },
-    { word: 'Trust', keyword: 'trust' },
-    { word: 'Knowledge', keyword: 'knowledge' },
-    { word: 'Passion', keyword: 'passion' },
-    { word: 'Purpose', keyword: 'purpose' },
-    { word: 'Impact', keyword: 'impact' },
-    { word: 'Solutions', keyword: 'solutions' },
-    { word: 'Code', keyword: 'code' },
+    { word: 'Friendship', keyword: 'friendship' },
+    { word: 'Fun', keyword: 'fun' },
+    { word: 'Coding', keyword: 'coding' },
+    { word: 'Learning', keyword: 'learning' },
+    { word: 'Creating', keyword: 'creating' },
+    { word: 'Building', keyword: 'building' },
+    { word: 'Hacking', keyword: 'hacking' },
+    { word: 'Growing', keyword: 'growing' },
+    { word: 'Sharing', keyword: 'sharing' },
+    { word: 'Exploring', keyword: 'exploring' },
   ],
-  subtitle: "A Developer & Researcher's journey through code and data.",
-  button: { text: 'View My Work', link: '/docs/intro' },
+  subtitle: "A crew of devs who build cool stuff, help each other out, and have a blast doing it.",
+  button: { text: "Let's Go!", link: '/docs/intro' },
 };
 
 // 2. docsTickerData 데이터 (제목 및 링크 수정)
@@ -59,33 +48,33 @@ const docsTickerData = {
 // 3. FloatingShowcase 데이터
 const floatingShowcaseData = [
   {
-    title: "Generative Models for Complex Data Synthesis",
-    description: "Published at NeurIPS 2024, this paper explores novel diffusion-based architectures for generating high-fidelity tabular data, achieving state-of-the-art results.",
+    title: "Weekend Hackathons",
+    description: "Every other weekend, we pick a wild idea and build it from scratch. No rules, no deadlines — just vibes and code. Some of our best projects started as 2am jokes.",
     imageUrl: {
-        light: 'https://placehold.co/800x600/e9f5f5/000000?text=NeurIPS+2024+Paper',
-        dark: 'https://placehold.co/800x600/1a2a2a/ffffff?text=NeurIPS+2024+Paper',
+        light: 'https://placehold.co/800x600/fff5f5/E63B2E?text=Hack+Night',
+        dark: 'https://placehold.co/800x600/1a1016/FF6B5E?text=Hack+Night',
     },
-    link: '/docs/paper/generative-models',
+    link: '/docs/intro',
     layout: 'right',
   },
   {
-    title: "Real-time Anomaly Detection System",
-    description: "An open-source streaming platform that processes millions of events per second to detect anomalies using Isolation Forests and autoencoders. Built with Go and Kafka.",
+    title: "Open Source Adventures",
+    description: "We contribute to open source together — fixing bugs, writing docs, and shipping features. It's way less scary when your friends have your back on code reviews.",
     imageUrl: {
-        light: 'https://placehold.co/800x600/f9f3e7/000000?text=Open+Source+Project',
-        dark: 'https://placehold.co/800x600/2a231a/ffffff?text=Open+Source+Project',
+        light: 'https://placehold.co/800x600/f5fff5/2E8B57?text=Open+Source',
+        dark: 'https://placehold.co/800x600/101a10/5EFF8B?text=Open+Source',
     },
-    link: 'https://github.com/your-username/anomaly-detection',
+    link: '/docs/intro',
     layout: 'left',
   },
   {
-    title: "Interactive Clinical Trial Data Dashboard",
-    description: "A web-based dashboard for visualizing and exploring complex clinical trial data, enabling researchers to uncover insights faster. Developed with React and D3.js.",
+    title: "Study Groups & Tech Talks",
+    description: "From algorithms to system design, we run casual study sessions where everyone teaches what they know. The best way to learn is to explain it to a friend.",
     imageUrl: {
-        light: 'https://placehold.co/800x600/f0f2f5/000000?text=Data+Dashboard',
-        dark: 'https://placehold.co/800x600/1a1a1a/ffffff?text=Data+Dashboard',
+        light: 'https://placehold.co/800x600/f5f5ff/4169E1?text=Study+Group',
+        dark: 'https://placehold.co/800x600/10101a/6B8BFF?text=Study+Group',
     },
-    link: '/docs/project/clinical-dashboard',
+    link: '/docs/intro',
     layout: 'right',
   }
 ];
@@ -93,25 +82,25 @@ const floatingShowcaseData = [
 // 4. FadingFeatures 데이터
 const fadingFeaturesData = [
     {
-    title: 'Scalable Backend Engineering',
-    description: 'Designing and implementing high-performance, resilient microservices architectures using Go, gRPC, and Kubernetes. Focused on clean code and cloud-native principles.',
+    title: 'Build Stuff Together',
+    description: "Whether it's a side project, a startup idea, or just messing around with a new framework — we pair up and make things happen. No solo grinding here.",
     imageUrl: {
-        light: 'https://placehold.co/1200x900/f0f2f5/000000?text=Backend+Systems',
-        dark: 'https://placehold.co/1200x900/1a1a1a/ffffff?text=Backend+Systems',
+        light: 'https://placehold.co/1200x900/fff5f0/E63B2E?text=Build+Together',
+        dark: 'https://placehold.co/1200x900/1a1010/FF6B5E?text=Build+Together',
     },
-    tags: ['Go', 'Kubernetes', 'Microservices', 'gRPC'],
-    link: '/docs/skills/backend',
-    layout: 'imageRight', 
+    tags: ['Collab', 'Projects', 'Ship It', 'Fun'],
+    link: '/docs/intro',
+    layout: 'imageRight',
   },
   {
-    title: 'Deep Learning & AI Research',
-    description: "Exploring the frontiers of AI, with a focus on Large Language Models (LLMs) and Computer Vision. Proficient with PyTorch, TensorFlow, and JAX for rapid prototyping and large-scale training.",
+    title: 'Level Up Your Skills',
+    description: "We share what we learn — from debugging tricks to system design patterns. Weekly code reviews, pair programming sessions, and friendly competitions keep everyone sharp.",
     imageUrl: {
-        light: 'https://placehold.co/1200x900/e9f5f5/000000?text=AI+Research',
-        dark: 'https://placehold.co/1200x900/1a2a2a/ffffff?text=AI+Research',
+        light: 'https://placehold.co/1200x900/f0f5ff/4169E1?text=Level+Up',
+        dark: 'https://placehold.co/1200x900/10101a/6B8BFF?text=Level+Up',
     },
-    tags: ['PyTorch', 'LLM', 'AI', 'JAX'],
-    link: '/docs/skills/ai-research',
+    tags: ['Learn', 'Grow', 'Share', 'Code'],
+    link: '/docs/intro',
     layout: 'imageLeft',
   },
 ];
@@ -123,7 +112,7 @@ export default function Home(): JSX.Element {
         <HomepageHeader {...homepageHeaderData} />
         <main>
           <FloatingShowcase showcaseItems={floatingShowcaseData} />
-          <FadingFeatures featureItems={fadingFeaturesData} />
+          <FadingFeatures features={fadingFeaturesData} />
           <div className={styles.objectTickerGroup}>
             <ObjectTicker
               title="Topics We've Explored"

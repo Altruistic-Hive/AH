@@ -1,10 +1,6 @@
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .logoCarouselContainer {
@@ -15,9 +11,9 @@
 
 .carouselTitle {
   color: var(--ifm-font-color-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
@@ -26,15 +22,13 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  /* 양쪽에 흐려지는 효과를 주기 위한 마스크 */
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .logoTrack {
   display: flex;
-  /* (로고 너비) * 로고 개수 * 2 */
-  width: calc(200px * 24); /* 기본 12개 로고 기준 */
+  width: calc(200px * 24);
   animation: scroll 40s linear infinite;
 }
 
@@ -50,22 +44,22 @@
 .logoSlide img {
   height: 40px;
   filter: grayscale(1);
-  opacity: 0.5;
-  transition: all 0.3s ease;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 html[data-theme='dark'] .logoSlide img {
-    /* 다크모드에서는 로고를 더 밝게 처리 */
-    filter: grayscale(1) brightness(0) invert(1);
-    opacity: 0.6;
+  filter: grayscale(1) brightness(1.5);
+  opacity: 0.35;
 }
 
-
 .logoSlide:hover img {
-  filter: grayscale(0) brightness(1);
+  filter: none;
   opacity: 1;
   transform: scale(1.1);
 }
+
 html[data-theme='dark'] .logoSlide:hover img {
-    filter: grayscale(0) brightness(1) invert(0);
+  filter: none;
+  opacity: 1;
 }
